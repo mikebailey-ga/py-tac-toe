@@ -1,4 +1,5 @@
 from colorama import Fore, Style
+import sys
 
 #globals
 state = {} 
@@ -42,7 +43,6 @@ def turn():
         render(board)
         win = winner()
         if win:
-
             print(Fore.GREEN + 'Winner, congrats player ' + str(state["player"]) + Fore.WHITE)
             break        
 
@@ -60,22 +60,26 @@ def render(board):
     # print(state['template'])
 
 def winner():
-    if board['a1'] == board['b1'] == board['c1'] and board['a1'] !=' ':
-        return True
-    if board['a2'] == board['b2'] == board['c2'] and board['a2'] !=' ':
-        return True
-    if board['a3'] == board['b3'] == board['c3'] and board['a3'] !=' ':
-        return True
-    if board['a1'] == board['a2'] == board['a3'] and board['a1'] !=' ':
-        return True
-    if board['b1'] == board['b2'] == board['b3'] and board['b1'] !=' ':
-        return True
-    if board['c1'] == board['c2'] == board['c3'] and board['c1'] !=' ':
-        return True
-    if board['a1'] == board['b2'] == board['c3'] and board['a1'] !=' ':
-        return True
-    if board['a3'] == board['b2'] == board['c1'] and board['c1'] !=' ':
-        return True
-                                                      
+    if ' ' in board.values():
+        if board['a1'] == board['b1'] == board['c1'] and board['a1'] !=' ':
+            return True
+        if board['a2'] == board['b2'] == board['c2'] and board['a2'] !=' ':
+            return True
+        if board['a3'] == board['b3'] == board['c3'] and board['a3'] !=' ':
+            return True
+        if board['a1'] == board['a2'] == board['a3'] and board['a1'] !=' ':
+            return True
+        if board['b1'] == board['b2'] == board['b3'] and board['b1'] !=' ':
+            return True
+        if board['c1'] == board['c2'] == board['c3'] and board['c1'] !=' ':
+            return True
+        if board['a1'] == board['b2'] == board['c3'] and board['a1'] !=' ':
+            return True
+        if board['a3'] == board['b2'] == board['c1'] and board['c1'] !=' ':
+            return True
+    else:
+            print('TIE GAME!')
+            sys.exit()
+                                                        
 render(board)
 turn()
